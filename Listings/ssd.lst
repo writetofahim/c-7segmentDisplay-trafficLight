@@ -1,0 +1,55 @@
+C51 COMPILER V9.60.0.0   SSD                                                               01/24/2023 19:14:10 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE SSD
+OBJECT MODULE PLACED IN .\Objects\ssd.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ssd.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\ssd.l
+                    -st) TABS(2) OBJECT(.\Objects\ssd.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          sbit red=P1^0;
+   3          sbit yellow=P1^1;
+   4          sbit green=P1^2;
+   5          void ssd_delay(int y); 
+   6          void main(){
+   7   1        red=yellow=green=0;
+   8   1        while(1){
+   9   2          red=1;
+  10   2          ssd_delay(9);
+  11   2          red=0;
+  12   2          yellow=1;
+  13   2          ssd_delay(5);
+  14   2          yellow=0;
+  15   2          green=1;
+  16   2          ssd_delay(9);
+  17   2          green=0;
+  18   2        }
+  19   1      }
+  20          void ssd_delay(int y){
+  21   1        unsigned char
+  22   1        ssd[10]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90};
+  23   1        unsigned char x;
+  24   1        unsigned int i;
+  25   1        P2=0x00;
+  26   1      
+  27   1          for(x=0;x<=y;x++){
+  28   2          P2=ssd[x];
+  29   2          for(i=0;i<50000;i++);
+  30   2          }
+  31   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    122    ----
+   CONSTANT SIZE    =     10    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      13
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
